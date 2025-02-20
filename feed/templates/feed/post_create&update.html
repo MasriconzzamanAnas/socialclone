@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} 
+
+{% if edit %}
+    <h1 class="text-center">Edit Post</h1>
+{% else %}
+    <h1 class="text-center">Create Post</h1>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form | crispy}} <br>
+    
+    <button type="submit" class="btn btn-success">Upload</button>
+</form>
+
+{% endblock %}
+{% block title %} 
+{% if edit %}
+    Edit Post
+{% else %}
+    Create Post
+{% endif %}
+
+{% endblock %}
