@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} 
+
+<div class="container mt-4 ">
+    <h2 class="text-center">All Posts</h2>
+    <div class="row d-flex justify-content-center">
+        {% for post in posts %}
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="{{ post.img.url }}" class="card-img-top" alt="Post Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.user.username }}</h5>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.text }}</p>
+                        <p class="text-muted">{{ post.updated_at }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">No posts yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
+{% block title %} Home {% endblock %}

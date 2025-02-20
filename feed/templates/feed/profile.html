@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Social Clone</a>
+        <div class="ms-auto">
+            <a href="{% url 'home' %}" class="btn btn-secondary">Feed</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h2 class="text-center">{{ request.user.username }}'s Posts</h2>
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="Post Image">
+                    <div class="card-body">
+                        <p class="card-text">{{ post.caption }}</p>
+                        <p class="text-muted">{{ post.created_at }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center">You haven't posted anything yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+{% block title %} my profile {% endblock %}

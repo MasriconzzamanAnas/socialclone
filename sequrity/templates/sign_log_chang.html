@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} 
+{% if cerat %}
+    <h1 class="text-center">Create User</h1>
+{% elif change %}
+    <h1 class="text-center">Change password</h1>
+{% endif %}
+<hr/>
+<form method="post">
+    {% csrf_token %}
+    {{form | crispy}} <br>
+    <button type="submit" class='btn btn-outline-primary'> submit</button>
+    <a href="{% url 'login' %}" class='btn btn-outline-primary'>Login</a>
+    
+</form>
+{% endblock %}
+{% block title %} 
+    {% if cerat %}
+        Create User
+    {% elif chang %}
+        Change password 
+    {% endif %}
+{% endblock %} 

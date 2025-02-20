@@ -1,0 +1,17 @@
+a.text-secondary:hover {
+    background-color: rgba(147, 147, 148, 0.1); /* Light blue background */
+    padding: 3px 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+a.text-secondary:hover {
+    color: rgb(255, 255, 255) !important; /* Change to any color */
+    text-decoration: underline; /* Optional: adds an underline */
+    transition: 0.3s; /* Smooth transition */
+}
+
+a.text-secondary:hover {
+    transform: scale(1.1); /* Slightly enlarge */
+    transition: 0.3s ease-in-out;
+}

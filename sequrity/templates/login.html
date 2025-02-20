@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} 
+
+    <h1 class="text-center">Login User</h1>
+
+<hr/>
+<form method="post">
+    {% csrf_token %}
+    {{form | crispy}} <br>
+    <button type="submit" class='btn btn-outline-primary'> submit</button>
+
+    
+        <a href="{% url "signup" %}" class='btn btn-outline-success'>creat a account</a>
+    
+</form>
+
+{% endblock %}
+
+{% block title %} 
+    Login User
+{% endblock %}
+
+
+
+{% comment %} {% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %} 
+
+{% endblock %}
+{% block title %} Home {% endblock %} {% endcomment %}
