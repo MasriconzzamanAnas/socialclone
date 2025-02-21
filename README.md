@@ -5,10 +5,12 @@ There are too many users. I give some users access to test the project.
 
 OR you can create a normal user account.
 
-To preview this project pull the project to your machine 
-first install  $ pipenv shell
-after that install all dependencies by $ pipenv install --dev
-now run the project by $ py manage.py runserver.
+To preview this project pull the project to your machine first, install
+**$ pipenv shell**
+after that install all dependencies by 
+**$ pipenv install --dev**
+now run the project by 
+**$ py manage.py runserver.**
 
 		****Project Details****
 
