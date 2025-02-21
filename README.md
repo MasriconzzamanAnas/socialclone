@@ -11,3 +11,7 @@ after that install all dependencies by $ pipenv install --dev
 now run the project by $ py manage.py runserver.
 
 		****Project Details****
+
+I use HTML, CSS & Bootstrap for Font-end and Django for backend. 
+In this project user can create a account and post ther photo.
+A user can delete and edit there post. 
