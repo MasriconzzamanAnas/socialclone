@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Post Feed</h2>
+
+    <!-- Search and Filter Form -->
+    <form method="GET" class="mb-4">
+        <div class="row g-2">
+            <div class="col-md-3">
+                <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request.GET.q }}">
+            </div>
+            <div class="col-md-3">
+                <select name="user" class="form-control">
+                    <option value="">All Users</option>
+                    {% for post in posts %}
+                        <option value="{{ post.user.username }}" {% if request.GET.user == post.user.username %} selected {% endif %}>{{ post.user.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select name="media" class="form-control">
+                    <option value="">All Media</option>
+                    <option value="text" {% if request.GET.media == "text" %}selected{% endif %}>Text Only</option>
+                    <option value="image" {% if request.GET.media == "image" %}selected{% endif %}>Images</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select name="date" class="form-control">
+                    <option value="latest" {% if request.GET.date == "latest" %}selected{% endif %}>Newest</option>
+                    <option value="oldest" {% if request.GET.date == "oldest" %}selected{% endif %}>Oldest</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">Filter</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Posts Display -->
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card">
+                {% if post.img %}
+                <img src="{{ post.img.url }}" class="card-img-top" alt="Post Image">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.user.username }}</h5>
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.text }}</p>
+                    <p class="text-muted">{{ post.updated_at }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No posts found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
