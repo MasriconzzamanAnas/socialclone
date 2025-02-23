@@ -21,10 +21,10 @@ class Post(models.Model):
         ('Others', 'Others')
 
     )
-    title= models.CharField(max_length=255)
-    text = models.TextField()
-    catagory = models.CharField(max_length=100, choices=CATAGORY, null=True)
-    img = models.ImageField(upload_to=postfile)
+    title= models.CharField(max_length=255, null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
+    catagory = models.CharField(max_length=100, choices=CATAGORY, null=True, blank=True)
+    img = models.ImageField(upload_to=postfile,null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)  # FIXED typo
     updated_at = models.DateTimeField(auto_now=True)
