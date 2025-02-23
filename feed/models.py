@@ -23,7 +23,7 @@ class Post(models.Model):
     )
     title= models.CharField(max_length=255, null=True, blank=True)
     text = models.TextField(null=True, blank=True)
-    catagory = models.CharField(max_length=100, choices=CATAGORY, null=True, blank= True)
+    catagory = models.CharField(max_length=100, choices=CATAGORY, null=True)
     img = models.ImageField(upload_to=postfile,null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)  # FIXED typo

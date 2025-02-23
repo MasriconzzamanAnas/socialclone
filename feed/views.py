@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.contrib import messages
+from django.db.models import Q
 from . import models, form
 # Create your views here.
 
@@ -67,13 +68,13 @@ class PostListView(ListView):
 
     def get_queryset(self):
         queryset = models.Post.objects.all()
-        # search_query = self.request.GET.get("q")
+        search_query = self.request.GET.get("q")
         filter_user = self.request.GET.get("user")
         filter_media = self.request.GET.get("media")
         filter_date = self.request.GET.get("date")
 
-        # if search_query:
-        #     queryset = queryset.filter(text__icontains=search_query)
+        if search_query:
+            queryset = queryset.filter(Q(text__icontains=search_query)| Q(title__icontains= search_query) | Q(user__username__icontains= search_query) | Q(catagory__icontains= search_query))
 
         if filter_user:
             queryset = queryset.filter(user__username=filter_user)
@@ -89,3 +90,18 @@ class PostListView(ListView):
             queryset = queryset.order_by("-created_at")
 
         return queryset
+    
+class search(ListView):
+    model = models.Post
+    template_name = "components/nav.html"
+    context_object_name = "posts"
+    ordering = ["-created_at"]
+    success_url = reverse_lazy("feed/serch.html")
+
+    def get_queryset(self):
+        queryset = models.Post.objects.all()
+        search_query = self.request.GET.get("q")
+
+        
+        return queryset 
+
