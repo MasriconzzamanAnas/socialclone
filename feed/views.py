@@ -67,21 +67,21 @@ class PostListView(ListView):
 
     def get_queryset(self):
         queryset = models.Post.objects.all()
-        search_query = self.request.GET.get("q")
+        # search_query = self.request.GET.get("q")
         filter_user = self.request.GET.get("user")
         filter_media = self.request.GET.get("media")
         filter_date = self.request.GET.get("date")
 
-        if search_query:
-            queryset = queryset.filter(text__icontains=search_query)
+        # if search_query:
+        #     queryset = queryset.filter(text__icontains=search_query)
 
         if filter_user:
             queryset = queryset.filter(user__username=filter_user)
 
         if filter_media == "text":
-            queryset = queryset.filter(img__isnull=True)
+            queryset = queryset.filter(img='')
         elif filter_media == "image":
-            queryset = queryset.filter(img__isnull=False)
+            queryset = queryset.filter(text ='')
 
         if filter_date == "oldest":
             queryset = queryset.order_by("created_at")
