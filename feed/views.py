@@ -56,11 +56,11 @@ class updatepost(LoginRequiredMixin, UpdateView):
 @method_decorator(login_required, name="dispatch")
 class deletepost(LoginRequiredMixin, DeleteView):
     model = models.Post
-    template_name = "feed/post_delete.html"
+    # template_name = "feed/post_delete.html"
     pk_url_kwarg = 'id'
     success_url = reverse_lazy("home")
 
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):
     model = models.Post
     template_name = "feed/serch.html"  
     context_object_name = "posts"
