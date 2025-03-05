@@ -49,7 +49,12 @@
                     <h5 class="card-title">{{ post.user.username }}</h5>
                     <h5 class="card-title">{{ post.title }}</h5>
                     {% comment %} <p class="card-text">{{ post.text }}</p> {% endcomment %}
-                    
+                    <p class="card-text text-truncate" style="max-height: 100px; overflow: hidden;" id="shortText{{post.id}}">{{ post.text }}</p>
+                    <!-- Hidden Full Text -->
+                    <div class="collapse" id="fullText{{post.id}}">
+                        <p class="card-text">{{ post.text}}</p>
+                    </div> 
+                    <button class="btn btn-primary mt-2" data-bs-toggle="collapse" data-bs-target="#fullText{{post.id}}" onclick="toggleText()">Read More</button>
                     <p class="text-muted">{{ post.updated_at }}</p>
                 </div>
             </div>
